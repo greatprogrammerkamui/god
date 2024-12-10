@@ -1,7 +1,6 @@
 import torch
 from torch import nn
 
-
 class MyModel(nn.Module):
     def __init__(self):
         super().__init__()
@@ -13,8 +12,7 @@ class MyModel(nn.Module):
             nn.Linear(512,512),
             nn.ReLU(),  
             nn.Linear(512,10),
-        )
-    
+        )    
     def forward(self,x):
         x = self.flatten(x)
         logits = self.network(x)
@@ -32,7 +30,6 @@ def test_accuracy(model, dataloader):
         n_corrects += (label_batch == predict_batch).sum().item()
 
     accuracy = n_corrects / len(dataloader.dataset)
-
     return accuracy
 def train(model, dataloader, loss_fn, optimizer):
     """1 epoch の学習を行う"""
@@ -45,7 +42,6 @@ def train(model, dataloader, loss_fn, optimizer):
         optimizer.zero_grad()
         loss.backward()
         optimizer.step()
-
     return loss.item()
 def test(model, dataloader, loss_fn):
     model.eval()
