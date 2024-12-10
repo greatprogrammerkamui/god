@@ -71,7 +71,9 @@ for k in range(n_epochs):
     print(f'epoch {k+1}/{n_epochs}')
 
     # 1 epoch の学習
+    time_start = time.time()
     loss_train = models.train(model, dataloader_train, loss_fn, optimizer)
+    time_end = time.time()
     print(f'train loss: {loss_train}')
 
     loss_test = models.test(model, dataloader_test, loss_fn)
